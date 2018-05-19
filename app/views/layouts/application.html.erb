@@ -24,9 +24,16 @@
           <li class="nav-item">
             <%= link_to "About", about_path, class: "nav-link" %>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
-          </li>
+          <% if !logged_in? %>
+            <li class="nav-item">
+              <%= link_to "Login", login_path, class: "nav-link" %>
+            </li>
+          <% end %>
+          <% if logged_in? %>
+            <li class="nav-item">
+              <%= link_to "Logout", logout_path, method: :delete, class: "nav-link" %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </nav>
@@ -35,6 +42,7 @@
       <% flash.each do |message_type, message| %>
         <div class="<%= "alert alert-#{message_type}" %>"><%= message %></div>
       <% end %>
+
       <%= yield %>
       <%= debug(params) if Rails.env.development? %>
     </div>

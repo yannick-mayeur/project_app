@@ -1,9 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  email: first.la-st@umontpellier.fr
-
-two:
-  name: MyString
-  email: first.last2@etu.umontpellier.fr
+foobar:
+  name: John Doe
+  email: john.doe@umontpellier.fr
+  password_digest: <%= User.digest('password') %>
