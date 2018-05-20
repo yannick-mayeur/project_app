@@ -10,4 +10,10 @@ class ActiveSupport::TestCase
     !cookies[:user_id].empty?
     !cookies[:remember_token].empty?
   end
+
+  # Log in as a particular user.
+  def log_in_as(user, password: 'password', remember_me: '1')
+    post login_path, params: { cookie: { email: user.email,
+                                         password: password } }
+  end
 end
