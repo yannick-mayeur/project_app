@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   delete '/logout', to: 'cookies#destroy'
   root 'static_pages#home'
   resources :users
+  resources :courses
 end
