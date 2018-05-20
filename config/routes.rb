@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   post '/login',  to: 'cookies#create'
   delete '/logout', to: 'cookies#destroy'
   root 'static_pages#home'
+  resources :users
 end
