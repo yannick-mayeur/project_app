@@ -1,5 +1,4 @@
 class CookiesController < ApplicationController
-  include CookiesHelper
   def new
   end
   
