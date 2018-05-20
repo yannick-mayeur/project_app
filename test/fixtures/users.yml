@@ -4,3 +4,8 @@ foobar:
   name: John Doe
   email: john.doe@umontpellier.fr
   password_digest: <%= User.digest('password') %>
+
+jane:
+  name: Jane Doe
+  email: jane.doe@etu.umontpellier.fr
+  password_digest: <%= User.digest('password') %>

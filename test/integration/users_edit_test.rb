@@ -4,6 +4,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:foobar)
+    @other_user = users(:jane)
   end
 
   test "unsuccessful edit" do
@@ -44,5 +45,21 @@ class UsersEditTest < ActionDispatch::IntegrationTest
                                               email: @user.email } }
     assert_not flash.empty?
     assert_redirected_to login_url
+  end
+
+
+  test "should redirect edit when wrong user logged in" do
+    log_in_as(@other_user)
+    get edit_user_path(@user)
+    assert flash.empty?
+    assert_redirected_to root_path
+  end
+
+  test "should redirect update when wrong user logged in" do
+    log_in_as(@other_user)
+    patch user_path(@user), params: { user: { name:  @user.name,
+                                              email: @user.email } }
+    assert flash.empty?
+    assert_redirected_to root_path
   end
 end
