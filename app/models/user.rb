@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   attr_accessor :remember_token
+  has_many :followments
+  has_many :courses, through: :followments
   before_save { self.email = self.email.downcase }
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[a-z]*\.([a-z]*-?[a-z])*[1-9]?@(etu.)?umontpellier.fr\z/i
