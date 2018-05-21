@@ -1,6 +1,20 @@
 <h1>Create a new course</h1>
 
 <%= form_for(@course) do |f| %>
+  <%# prints out if anny errors in form %>
+  <% if @course.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-warning">
+        The form contains <%= pluralize(@course.errors.count, "error") %>.
+      </div>
+      <ul>
+        <% @course.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, class: "form-control", placeholder: "Enter name" %>
