@@ -5,6 +5,14 @@ class CoursesTest < ActionDispatch::IntegrationTest
     @user = users(:foobar)
   end
 
+  test "index page when logged in" do
+    log_in_as(@user)
+    get courses_path
+    assert_select 'div.card-body' do
+      assert_select 'a[href="#"]'
+    end
+  end
+
   test "invalid new courses" do
     log_in_as(@user)
     get new_course_path

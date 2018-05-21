@@ -12,9 +12,12 @@
 
     <div id="collapse<%= course.name %>" class="collapse" aria-labelledby="heading<%= course.name %>" data-parent="#accordionExample">
       <div class="card-body">
-          <%= course.description %>
+        <p class="card-text"><%= course.description %></p>
+        <% if logged_in? %>
+          <%= link_to "Follow course", '#', class: "btn btn-secondary btn-sm", role: "button" %>
+        <% end %>
       </div>
     </div>
   </div>
-  <% end %>
+<% end %>
 </div>
