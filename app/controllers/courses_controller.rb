@@ -1,4 +1,6 @@
 class CoursesController < ApplicationController
+  before_action :logged_in_user, only: [:new,:edit, :update]
+
   def index
     @courses = Course.all
   end

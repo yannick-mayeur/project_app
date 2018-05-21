@@ -1,8 +1,12 @@
 require 'test_helper'
 
 class CoursesTest < ActionDispatch::IntegrationTest
+  def setup
+    @user = users(:foobar)
+  end
 
   test "invalid new courses" do
+    log_in_as(@user)
     get new_course_path
     assert_select 'form[action="/courses"]'
     assert_no_difference 'Course.count' do
@@ -15,6 +19,7 @@ class CoursesTest < ActionDispatch::IntegrationTest
   end
 
   test "valid new courses" do
+    log_in_as(@user)
     get new_course_path
     assert_select 'form[action="/courses"]'
     assert_difference 'Course.count' do
