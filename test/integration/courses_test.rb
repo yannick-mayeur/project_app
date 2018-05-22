@@ -9,7 +9,7 @@ class CoursesTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
     get courses_path
     assert_select 'div.card-body' do
-      assert_select 'a[href="#"]'
+      assert_select 'a', count: Course.count
     end
   end
 

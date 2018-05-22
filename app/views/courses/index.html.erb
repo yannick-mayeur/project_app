@@ -14,7 +14,7 @@
       <div class="card-body">
         <p class="card-text"><%= course.description %></p>
         <% if logged_in? %>
-          <%= link_to "Follow course", '#', class: "btn btn-secondary btn-sm", role: "button" %>
+          <%= link_to "Follow course", followments_path(course_id: course.id), method: :post, class: "btn btn-secondary btn-sm", role: "button" %>
         <% end %>
       </div>
     </div>
