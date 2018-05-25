@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   resources :users
   resources :courses
-  resources :followments, only: [:create]
+  resources :followments, only: [:create, :destroy]
 end
