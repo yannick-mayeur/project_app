@@ -8,4 +8,12 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+
+  # Confirms an admin user.
+  def admin_user
+    if !current_user.admin?
+      flash[:danger] = "YOU ARE NOT AN ADMIN"
+      redirect_to root_url
+    end
+  end
 end
