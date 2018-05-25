@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   before_action :logged_in_user, only: [:new,:edit, :update]
+  before_action :admin_user, only: [:new,:edit, :update]
 
   def index
     @courses = Course.all
