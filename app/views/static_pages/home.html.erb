@@ -1,11 +1,47 @@
-<div class="jumbotron">
-  <h1 class="display-4">Welcome to MenexaTech</h1>
-  <p class="lead">
-    This is a web application allowing students to learn in a more effective
-    way. It enables them to share previous exams and their answers as well as
-    offering them a place for discussion.
-  </p>
-  <hr class="my-4">
-  <p></p>
-  <%= link_to "Sign up now", signup_path, class: "btn btn-primary btn-lg", role: "button" %>
-</div>
+<% @user ||= current_user %>
+<% if !logged_in? %>
+
+  <div class="jumbotron">
+    <h1 class="display-4">Welcome to MenexaTech</h1>
+    <p class="lead">
+      This is a web application allowing students to learn in a more effective
+      way. It enables them to share previous exams and their answers as well as
+      offering them a place for discussion.
+    </p>
+    <hr class="my-4">
+    <p></p>
+    <%= link_to "Sign up now", signup_path, class: "btn btn-primary btn-lg", role: "button" %>
+  </div>
+
+<% else %>
+
+  <% if @user.courses.empty? %>
+
+    Start following courses now!
+
+  <% else %>
+
+    <% @user.courses.each do |course| %>
+      <div class="card">
+        <div class="card-header" id="heading<%= course.name %>">
+          <h5 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%= course.name %>" aria-expanded="true" aria-controls="collapse<%= course.name %>">
+              <%= course.name %>
+            </button>
+          </h5>
+        </div>
+
+        <div id="collapse<%= course.name %>" class="collapse" aria-labelledby="heading<%= course.name %>" data-parent="#accordionExample">
+          <div class="card-body">
+            <p class="card-text"><%= course.description %></p>
+            <%= form_for(current_user.followments.find_by(course_id: course.id), html: { method: :delete }) do |f| %>
+              <%= f.submit "Unfollow", class: "btn" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+  <% end %>
+
+<% end %>
