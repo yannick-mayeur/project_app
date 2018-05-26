@@ -17,7 +17,18 @@
 
   <% if @user.courses.empty? %>
 
-    Start following courses now!
+    <div class="jumbotron">
+      <h1 class="display-4">Welcome <%= @user.name %></h1>
+      <p class="lead">
+        This is a web application allowing students to learn in a more effective
+        way. It enables them to share previous exams and their answers as well as
+        offering them a place for discussion. You can follow courses and they
+        will show up on your home page
+      </p>
+      <hr class="my-4">
+      <p></p>
+      <%= link_to "Start following courses now", courses_path, class: "btn btn-primary btn-lg", role: "button" %>
+    </div>
 
   <% else %>
 
