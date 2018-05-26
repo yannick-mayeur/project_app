@@ -15,20 +15,26 @@
         <p class="card-text"><%= course.description %></p>
 
         <% if logged_in? %>
-          <% if not current_user.courses.exists?(course.id) %>
+          <div class="btn-group" role="group">
+            <% if not current_user.courses.exists?(course.id) %>
 
-            <%= form_for(current_user.followments.build) do |f| %>
-              <div><%= hidden_field_tag :course_id, course.id %></div>
-              <%= f.submit "Follow", class: "btn btn-primary" %>
+              <%= form_for(current_user.followments.build) do |f| %>
+                <div><%= hidden_field_tag :course_id, course.id %></div>
+                <%= f.submit "Follow", class: "btn btn-primary" %>
+              <% end %>
+
+            <% else %>
+
+              <%= form_for(current_user.followments.find_by(course_id: course.id), html: { method: :delete }) do |f| %>
+                <%= f.submit "Unfollow", class: "btn" %>
+              <% end %>
+
             <% end %>
 
-          <% else %>
-
-            <%= form_for(current_user.followments.find_by(course_id: course.id), html: { method: :delete }) do |f| %>
-              <%= f.submit "Unfollow", class: "btn" %>
+            <% if current_user.admin? %>
+              <%= link_to "Delete", course, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-secondary" %>
             <% end %>
-
-          <% end %>
+          </div>
         <% end %>
 
       </div>
@@ -36,3 +42,9 @@
   </div>
 <% end %>
 </div>
+
+<% if logged_in? %>
+  <% if current_user.admin? %>
+    <%= link_to "Create new course", new_course_path, class: "btn btn-primary btn-md", role: "button" %>
+  <% end %>
+<% end %>

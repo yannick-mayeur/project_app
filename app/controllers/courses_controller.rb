@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
-  before_action :logged_in_user, only: [:new,:edit, :update]
-  before_action :admin_user, only: [:new,:edit, :update]
+  before_action :logged_in_user, only: [:new,:edit, :update, :destroy]
+  before_action :admin_user, only: [:new,:edit, :update, :destroy]
 
   def index
     @courses = Course.all
@@ -18,6 +18,12 @@ class CoursesController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def destroy
+    Course.find(params[:id]).destroy
+    flash[:success] = "Course deleted"
+    redirect_to courses_path
   end
 
 
