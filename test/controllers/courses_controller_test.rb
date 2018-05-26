@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CoursesControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @user = users(:foobar)
+    @user = users(:yannick)
   end
 
   test "should get index" do

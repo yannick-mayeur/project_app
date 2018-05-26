@@ -13,7 +13,7 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(user_params)
     if @course.save
-      flash[:success] = "Successful sign up!"
+      flash[:success] = "Course created!"
       redirect_to courses_path
     else
       render 'new'

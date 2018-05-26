@@ -11,3 +11,8 @@ User.create!(name:  "Yannick Mayeur",
              password:              "foobar",
              password_confirmation: "foobar",
              admin: true)
+
+User.create!(name:  "Foo Bar",
+             email: "foo.bar@umontpellier.fr",
+             password:              "foobar",
+             password_confirmation: "foobar")
