@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'old_exams/new'
   get '/about',  to: 'static_pages#about'
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
@@ -9,4 +10,5 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update]
   resources :courses
   resources :followments, only: [:create, :destroy]
+  resources :old_exams
 end

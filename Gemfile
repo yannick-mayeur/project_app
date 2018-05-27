@@ -12,6 +12,7 @@ gem 'sprockets-rails', '~> 3.2', '>= 3.2.1'
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
+gem 'mini_magick', '~> 4.8'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
