@@ -21,6 +21,7 @@
               <%= render 'follow_form' %>
 
               <% if current_user.admin? %>
+                <%= link_to "Update", edit_course_path(course.id), class: "btn btn-secondary" %>
                 <%= link_to "Delete", course_path(course.id), method: :delete, data: { confirm: "You sure?" }, class: "btn btn-secondary" %>
               <% end %>
             </div>
