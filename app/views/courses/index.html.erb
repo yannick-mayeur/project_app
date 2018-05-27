@@ -16,14 +16,19 @@
           <p class="card-text"><%= course.description %></p>
 
           <% if logged_in? %>
-            <div class="btn-group" role="group">
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar courses">
 
-              <%= render 'follow_form' %>
+              <div class="btn-group mr-2" role="group" aria-label="General group">
+                <%= render 'follow_form' %>
+              </div>
 
               <% if current_user.admin? %>
-                <%= link_to "Update", edit_course_path(course.id), class: "btn btn-secondary" %>
-                <%= link_to "Delete", course_path(course.id), method: :delete, data: { confirm: "You sure?" }, class: "btn btn-secondary" %>
+                <div class="btn-group mr-2" role="group" aria-label="Admin group">
+                  <%= link_to "Update", edit_course_path(course.id), class: "btn btn-secondary" %>
+                  <%= link_to "Delete", course_path(course.id), method: :delete, data: { confirm: "You sure?" }, class: "btn btn-secondary" %>
+                </div>
               <% end %>
+
             </div>
           <% end %>
 
