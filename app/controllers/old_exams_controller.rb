@@ -17,6 +17,14 @@ class OldExamsController < ApplicationController
     end
   end
 
+  def destroy
+    exam = OldExam.find(params[:id])
+    id = exam.course_id
+    exam.destroy
+    flash[:success] = "Exam deleted"
+    redirect_to course_path(id)
+  end
+
 
   private
 
