@@ -6,7 +6,7 @@
         <%= image_tag(exam.file.preview(resize: "300x300>"), class: "card-img-top") %>
       <% end %>
       <div class="card-body">
-        <h5 class="card-title"><%= exam.title %> <% if exam.created_at >= 1.week.ago %><span class="badge badge-secondary">New</span><% end %></h5>
+        <h5 class="card-title"><%= exam.title %> <% if exam.created_at >= 1.day.ago %><span class="badge badge-secondary">New</span><% end %></h5>
         <div class="btn-group-vertical" role="group" aria-label="Basic example">
           <%= link_to "Download", rails_blob_path(exam.file, disposition: "attachment"), class: "btn btn-primary btn-md", role: "button" %>
           <% if current_user.admin? %>
