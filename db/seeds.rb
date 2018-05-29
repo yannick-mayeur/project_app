@@ -16,3 +16,12 @@ User.create!(name:  "Foo Bar",
              email: "foo.bar@umontpellier.fr",
              password:              "foobar",
              password_confirmation: "foobar")
+
+Course.create!(name: "Algo",
+               description: "Cest coeff 8 alors bosse !")
+
+Course.create!(name: "Compilation",
+               description: "Le mips c'est pas si dur.")
+
+Course.create!(name: "Compta",
+               description: "416 client douteux")
