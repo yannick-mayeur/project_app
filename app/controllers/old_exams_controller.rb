@@ -21,6 +21,6 @@ class OldExamsController < ApplicationController
   private
 
   def user_params
-    params.require(:old_exam).permit(:title, :file)
+    params.require(:old_exam).permit(:title, :file, :course_id)
   end
 end

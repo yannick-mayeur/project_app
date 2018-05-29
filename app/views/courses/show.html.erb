@@ -1,0 +1,14 @@
+<h1><%= @course.name %></h1>
+  <div class="card-deck">
+    <% @course.old_exams.each do |exam| %>
+      <div class="card my-3">
+        <% if exam.file.previewable? %>
+          <%= image_tag(exam.file.preview(resize: "300x300>"), class: "card-img-top") %>
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= exam.title %></h5>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

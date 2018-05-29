@@ -45,9 +45,16 @@
         <div id="collapse<%= course.name %>" class="collapse" aria-labelledby="heading<%= course.name %>" data-parent="#accordionExample">
           <div class="card-body">
             <p class="card-text"><%= course.description %></p>
-            <%= form_for(current_user.followments.find_by(course_id: course.id), html: { method: :delete }) do |f| %>
-              <%= f.submit "Unfollow", class: "btn" %>
-            <% end %>
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar courses">
+              <div class="btn-group mr-2" role="group" aria-label="General group">
+                <%= form_for(current_user.followments.find_by(course_id: course.id), html: { method: :delete }) do |f| %>
+                  <%= f.submit "Unfollow", class: "btn" %>
+                <% end %>
+              </div>
+              <div class="btn-group mr-2" role="group" aria-label="Admin group">
+                <%= link_to "Show", course_path(course.id), class: "btn btn-primary" %>
+              </div>
+            </div>
           </div>
         </div>
       </div>

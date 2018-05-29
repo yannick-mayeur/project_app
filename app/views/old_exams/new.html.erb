@@ -25,5 +25,10 @@
     <%= f.file_field :file, multiple: false, direct_upload: true %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :course_id %>
+    <%= f.collection_select :course_id, Course.all, :id, :name %>
+  </div>
+
   <%= f.submit "Create old_exam", class: "btn btn-primary" %>
 <% end %>
