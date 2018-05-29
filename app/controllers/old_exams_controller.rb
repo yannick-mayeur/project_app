@@ -4,7 +4,7 @@ class OldExamsController < ApplicationController
   end
 
   def new
-    @old_exam = OldExam.new
+    @old_exam = OldExam.new(course_id: params[:course_id])
   end
 
   def create
