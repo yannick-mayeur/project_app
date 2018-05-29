@@ -7,9 +7,10 @@
       <% end %>
       <div class="card-body">
         <h5 class="card-title"><%= exam.title %> <% if exam.created_at >= 1.week.ago %><span class="badge badge-secondary">New</span><% end %></h5>
-        <div class="btn-group" role="group" aria-label="Basic example">
+        <div class="btn-group-vertical" role="group" aria-label="Basic example">
           <%= link_to "Download", rails_blob_path(exam.file, disposition: "attachment"), class: "btn btn-primary btn-md", role: "button" %>
           <% if current_user.admin? %>
+            <%= link_to "Update", edit_old_exam_path(exam.id), class: "btn btn-secondary btn-md", role: "button" %>
             <%= link_to "Delete", old_exam_path(exam.id), method: :delete, class: "btn btn-secondary btn-md", role: "button" %>
           <% end %>
         </div>

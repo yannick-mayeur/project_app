@@ -17,6 +17,21 @@ class OldExamsController < ApplicationController
     end
   end
 
+  def edit
+    @old_exam = OldExam.find(params[:id])
+  end
+
+  def update
+    @old_exam = OldExam.find(params[:id])
+    id = @old_exam.course_id
+    if @old_exam.update_attributes(user_params)
+      flash[:success] = "Successful edit!"
+      redirect_to course_path(id)
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     exam = OldExam.find(params[:id])
     id = exam.course_id
