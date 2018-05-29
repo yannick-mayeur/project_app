@@ -11,7 +11,7 @@ class OldExamsController < ApplicationController
     @old_exam = OldExam.new(user_params)
     if @old_exam.save
       flash[:success] = "Exam created!"
-      redirect_to root_path
+      redirect_to course_path(@old_exam.course_id)
     else
       render 'new'
     end
