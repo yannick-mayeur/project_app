@@ -1,9 +1,7 @@
-<% unless current_user?(@user) %>
-  <div id="<%= "follow_form_#{@course.id}" %>">
+<div id="<%= "follow_form_#{@course.id}" %>">
   <% if current_user.courses.exists?(@course.id) %>
-    <%= render 'unfollow' %>
+    <%= render 'courses/unfollow' %>
   <% else %>
-    <%= render 'follow' %>
+    <%= render 'courses/follow' %>
   <% end %>
-  </div>
-<% end %>
+</div>

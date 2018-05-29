@@ -22,13 +22,13 @@
                 <%= render 'follow_form' %>
               </div>
 
-              <% if current_user.admin? %>
-                <div class="btn-group mr-2" role="group" aria-label="Admin group">
-                  <%= link_to "Show", course_path(@course.id), class: "btn btn-primary" %>
+              <div class="btn-group mr-2" role="group" aria-label="Admin group">
+                <%= link_to "Show", course_path(@course.id), class: "btn btn-primary" %>
+                <% if current_user.admin? %>
                   <%= link_to "Update", edit_course_path(course.id), class: "btn btn-secondary" %>
                   <%= link_to "Delete", course_path(course.id), method: :delete, data: { confirm: "You sure?" }, class: "btn btn-secondary" %>
-                </div>
-              <% end %>
+                <% end %>
+              </div>
 
             </div>
           <% end %>

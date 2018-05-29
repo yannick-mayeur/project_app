@@ -32,33 +32,39 @@
 
   <% else %>
 
-    <% @user.courses.each do |course| %>
-      <div class="card">
-        <div class="card-header" id="heading<%= course.name %>">
-          <h5 class="mb-0">
-            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%= course.name %>" aria-expanded="true" aria-controls="collapse<%= course.name %>">
-              <%= course.name %>
-            </button>
-          </h5>
-        </div>
+    <div class="accordion" id="accordionExample">
+      <% @user.courses.each do |course| %>
+        <% @course = course %>
+        <div class="card">
+          <div class="card-header" id="heading<%= course.name %>">
+            <h5 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%= course.name %>" aria-expanded="true" aria-controls="collapse<%= course.name %>">
+                <%= course.name %>
+              </button>
+            </h5>
+          </div>
 
-        <div id="collapse<%= course.name %>" class="collapse" aria-labelledby="heading<%= course.name %>" data-parent="#accordionExample">
-          <div class="card-body">
-            <p class="card-text"><%= course.description %></p>
-            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar courses">
-              <div class="btn-group mr-2" role="group" aria-label="General group">
-                <%= form_for(current_user.followments.find_by(course_id: course.id), html: { method: :delete }) do |f| %>
-                  <%= f.submit "Unfollow", class: "btn" %>
-                <% end %>
+          <div id="collapse<%= course.name %>" class="collapse" aria-labelledby="heading<%= course.name %>" data-parent="#accordionExample">
+            <div class="card-body">
+              <p class="card-text"><%= course.description %></p>
+
+              <div class="btn-toolbar" role="toolbar" aria-label="Toolbar courses">
+
+                <div class="btn-group mr-2" role="group" aria-label="General group">
+                  <%= render 'courses/follow_form' %>
+                </div>
+
+                <div class="btn-group mr-2" role="group" aria-label="Admin group">
+                  <%= link_to "Show", course_path(@course.id), class: "btn btn-primary" %>
+                </div>
+
               </div>
-              <div class="btn-group mr-2" role="group" aria-label="Admin group">
-                <%= link_to "Show", course_path(course.id), class: "btn btn-primary" %>
-              </div>
+
             </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
 
   <% end %>
 
