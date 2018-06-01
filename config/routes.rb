@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'comments/create'
   get 'old_exams/new'
   get '/about',  to: 'static_pages#about'
   get '/signup', to: 'users#new'
@@ -10,5 +11,6 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update]
   resources :courses
   resources :followments, only: [:create, :destroy]
+  resources :comments, only: [:create]
   resources :old_exams
 end
