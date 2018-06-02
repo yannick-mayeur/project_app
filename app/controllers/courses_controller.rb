@@ -3,7 +3,7 @@ class CoursesController < ApplicationController
   before_action :admin_user, only: [:new, :edit, :update, :destroy]
 
   def index
-    @courses = Course.all
+    @courses = Course.search(params[:search])
   end
 
   def show
