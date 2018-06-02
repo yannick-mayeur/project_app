@@ -14,23 +14,21 @@
         <div class="card-body">
           <p class="card-text"><%= course.description %></p>
 
-          <% if logged_in? %>
-            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar courses">
+          <div class="btn-toolbar" role="toolbar" aria-label="Toolbar courses">
 
-              <div class="btn-group mr-2" role="group" aria-label="General group">
-                <%= render 'courses/follow_form' %>
-              </div>
-
-              <div class="btn-group mr-2" role="group" aria-label="Admin group">
-                <%= link_to "Show", course_path(@course.id), class: "btn btn-primary" %>
-                <% if current_user.admin? and current_page?(controller: 'courses') %>
-                  <%= link_to "Update", edit_course_path(course.id), class: "btn btn-secondary" %>
-                  <%= link_to "Delete", course_path(course.id), method: :delete, data: { confirm: "You sure?" }, class: "btn btn-secondary" %>
-                <% end %>
-              </div>
-
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+              <%= render 'courses/follow_form' if logged_in? %>
             </div>
-          <% end %>
+
+            <div class="btn-group mr-2" role="group" aria-label="Second group">
+              <%= link_to "Show", course_path(@course.id), class: "btn btn-primary" %>
+              <% if logged_in? and current_user.admin? and current_page?(controller: 'courses') %>
+                <%= link_to "Update", edit_course_path(course.id), class: "btn btn-secondary" %>
+                <%= link_to "Delete", course_path(course.id), method: :delete, data: { confirm: "You sure?" }, class: "btn btn-secondary" %>
+              <% end %>
+            </div>
+
+          </div>
 
         </div>
       </div>

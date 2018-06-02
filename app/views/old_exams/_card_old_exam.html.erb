@@ -7,7 +7,7 @@
     <div class="btn-group-vertical" role="group" aria-label="Old Exam Buttons">
       <%= link_to "Download", rails_blob_path(@old_exam.file, disposition: "attachment"), class: "btn btn-primary btn-md", role: "button" %>
       <%= link_to "Show", old_exam_path(@old_exam.id), class: "btn btn-primary btn-md", role: "button" %>
-      <% if current_user.admin? %>
+      <% if logged_in? and current_user.admin? %>
         <%= link_to "Update", edit_old_exam_path(@old_exam.id), class: "btn btn-secondary btn-md", role: "button" %>
         <%= link_to "Delete", old_exam_path(@old_exam.id), method: :delete, class: "btn btn-secondary btn-md", role: "button" %>
       <% end %>
