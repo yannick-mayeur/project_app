@@ -1,0 +1,16 @@
+<div class="card my-3">
+  <% if @old_exam.file.previewable? %>
+    <%= image_tag(@old_exam.file.preview(resize: "300x300>"), class: "card-img-top") %>
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title"><%= @old_exam.title %> <% if @old_exam.created_at >= 1.day.ago %><span class="badge badge-secondary">New</span><% end %></h5>
+    <div class="btn-group-vertical" role="group" aria-label="Old Exam Buttons">
+      <%= link_to "Download", rails_blob_path(@old_exam.file, disposition: "attachment"), class: "btn btn-primary btn-md", role: "button" %>
+      <%= link_to "Show", old_exam_path(@old_exam.id), class: "btn btn-primary btn-md", role: "button" %>
+      <% if current_user.admin? %>
+        <%= link_to "Update", edit_old_exam_path(@old_exam.id), class: "btn btn-secondary btn-md", role: "button" %>
+        <%= link_to "Delete", old_exam_path(@old_exam.id), method: :delete, class: "btn btn-secondary btn-md", role: "button" %>
+      <% end %>
+    </div>
+  </div>
+</div>
