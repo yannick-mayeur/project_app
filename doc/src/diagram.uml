@@ -1,0 +1,39 @@
+@startuml
+
+class Comment {
+id
+content
+user_id
+old_exam_id
+}
+class User {
+id
+name
+email
+password_digest
+remember_digest
+}
+class Course {
+id
+name
+description
+}
+class Followment {
+id
+user_id
+coures_id
+}
+
+class OldExam {
+id
+title
+course_id
+}
+
+Comment "0..*" -right- "1" OldExam : Concerns
+Comment "0..*" -down- "1" User : Posts
+Course "1" -up- "0..*" OldExam : Has
+User "0..*" -left- "0..*" Course
+(User, Course) .. Followment
+
+@enduml

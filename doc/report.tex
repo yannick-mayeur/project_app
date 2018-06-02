@@ -40,11 +40,14 @@ old exams.
 
 \section{Instructions}
 
+% TODO
 
 
 \section{Technologies}
 
-\subsection{Ruby on Rails}
+\subsection{Description of the technologies}
+
+\subsubsection{Ruby on Rails}
 To develop my web application I choose to use the Rails framework.
 Rails is running on the Ruby programming language. Rails being a mature
 framework, countless resources to help get started are available. The framework
@@ -61,8 +64,12 @@ another part of the application.
    \caption{\label{fig:rlogo} Ruby on Rails logo}
 \end{figure}
 
+\subsubsection{Bootstrap}
 
-\subsection{Heroku}
+% TODO
+
+
+\subsubsection{Heroku}
 To deploy my web application I used Heroku. Heroku is a cloud PaaS (Platform as
 a Service) which supports Ruby on Rails. Heroku makes it very easy to deploy a
 web application due to its numerous build packs. It has a free version which is
@@ -77,7 +84,7 @@ application.
 \end{figure}
 
 
-\subsection{Git and GitHub}
+\subsubsection{Git and GitHub}
 When working on a project it is very important to use a VCS (Version Control
 System). This type of tool makes it easy to see what change in the application
 produces bugs, and allows the programmer to roll these changes back. Git is the
@@ -93,7 +100,7 @@ some bugs or add new features.
 \end{figure}
 
 
-\subsection{PostgreSQL}
+\subsubsection{PostgreSQL}
 PostgreSQL is an open-source database management system. It is supported by
 Heroku.
 
@@ -103,6 +110,9 @@ Heroku.
    \caption{\label{fig:ghlogo} PostgreSQL logo}
 \end{figure}
 
+\subsection{Learning the technologies}
+
+% TODO
 
 
 \section{Architecture of the application}
@@ -137,9 +147,44 @@ drawbacks. It sometimes unnecessarily complicates, things that should be simple.
    \caption{\label{fig:uml} Class Diagram of the Database}
 \end{figure}
 
+We can see in figure~\ref{fig:uml} the different tables of the database and the
+relations they have between them.
+
+The database was created though Rails' Active Record Migrations. This feature of
+Rails is a convenient way of creating the database, and making it evolve
+over time.
+
+The User Table contains all the users of the application. A User is identified
+with an id, he also has a name, an email, which he uses to login, a
+password\_digest, which is a hashed version of his password, and a
+remember\_digest that is used for authentication though cookies.
+
+The Course Table is the cornerstone of the application. A Course like all the
+other tables is identified with an id. It also has a name, and a short
+description.
+
+The Followment table is where is stored what courses a user follows.
+"Followment" is an invented word, to respect the Rails convention of having a
+noun as name for Models. It stores the id of the user and of the course
+concerned by the follow relationship.
+
+The OldExam table is where the old exams are stored. An OldExam has a title,
+and references the course it belongs to. An OldExam also has a file, though the
+Active Storage service offered by Rails.
+
+The Comment table is where the comments are stored. A comment has content, it
+references the old exam that the comment concerns, and the user that posted the
+comment.
+
+The principle disadvantage of this model is that all courses are mixed
+together. That would be okay if only one class would use the application, but
+for more classes the list of courses will probably start to get very cluttered.
+A good future improvement would be to add a Class Table.
+
 
 \section{Post Mortem}
 
+% TODO
 
 
 \end{document}
