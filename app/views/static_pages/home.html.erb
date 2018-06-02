@@ -31,40 +31,9 @@
     </div>
 
   <% else %>
-
-    <div class="accordion" id="accordionExample">
-      <% @user.courses.each do |course| %>
-        <% @course = course %>
-        <div class="card">
-          <div class="card-header" id="heading<%= course.id %>">
-            <h5 class="mb-0">
-              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%= course.id %>" aria-expanded="true" aria-controls="collapse<%= course.id %>">
-                <%= course.name %>
-              </button>
-            </h5>
-          </div>
-
-          <div id="collapse<%= course.id %>" class="collapse" aria-labelledby="heading<%= course.id %>" data-parent="#accordionExample">
-            <div class="card-body">
-              <p class="card-text"><%= course.description %></p>
-
-              <div class="btn-toolbar" role="toolbar" aria-label="Toolbar courses">
-
-                <div class="btn-group mr-2" role="group" aria-label="General group">
-                  <%= render 'courses/follow_form' %>
-                </div>
-
-                <div class="btn-group mr-2" role="group" aria-label="Admin group">
-                  <%= link_to "Show", course_path(@course.id), class: "btn btn-primary" %>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
+    
+    <% @courses = @user.courses %>
+    <%= render 'courses/course_list' %>
 
   <% end %>
 

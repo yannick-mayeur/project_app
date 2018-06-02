@@ -1,44 +1,5 @@
 <h1>List of available courses</h1>
-<div class="accordion" id="accordionExample">
-  <% @courses.each do |course| %>
-    <% @course = course %>
-    <div class="card">
-      <div class="card-header" id="heading<%= course.id %>">
-        <h5 class="mb-0">
-          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%= course.id %>" aria-expanded="true" aria-controls="collapse<%= course.id %>">
-            <%= course.name %>
-          </button>
-        </h5>
-      </div>
-
-      <div id="collapse<%= course.id %>" class="collapse" aria-labelledby="heading<%= course.id %>" data-parent="#accordionExample">
-        <div class="card-body">
-          <p class="card-text"><%= course.description %></p>
-
-          <% if logged_in? %>
-            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar courses">
-
-              <div class="btn-group mr-2" role="group" aria-label="General group">
-                <%= render 'follow_form' %>
-              </div>
-
-              <div class="btn-group mr-2" role="group" aria-label="Admin group">
-                <%= link_to "Show", course_path(@course.id), class: "btn btn-primary" %>
-                <% if current_user.admin? %>
-                  <%= link_to "Update", edit_course_path(course.id), class: "btn btn-secondary" %>
-                  <%= link_to "Delete", course_path(course.id), method: :delete, data: { confirm: "You sure?" }, class: "btn btn-secondary" %>
-                <% end %>
-              </div>
-
-            </div>
-          <% end %>
-
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div>
-
+<%= render 'course_list' %>
 <% if logged_in? %>
   <% if current_user.admin? %>
     <%= link_to "Create new course", new_course_path, class: "btn btn-primary btn-md", role: "button" %>
