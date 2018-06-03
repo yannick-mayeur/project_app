@@ -3,7 +3,7 @@ class CoursesController < ApplicationController
   before_action :admin_user, only: [:new, :edit, :update, :destroy]
 
   def index
-    @courses = Course.search(params[:search])
+    @courses = Course.search(params[:search]).paginate(page: params[:page], per_page: 10)
   end
 
   def show
