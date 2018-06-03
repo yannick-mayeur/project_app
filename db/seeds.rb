@@ -25,3 +25,12 @@ Course.create!(name: "Compilation",
 
 Course.create!(name: "Compta",
                description: "416 client douteux")
+
+99.times do |n|
+  name  = Faker::Lorem.word
+  description = Faker::Lorem.paragraph
+  Course.create!(name: name,
+                 description: description)
+end
+
+
