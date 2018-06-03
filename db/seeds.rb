@@ -6,12 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create!(name:  "Yannick Mayeur",
-             email: "yannick.mayeur@etu.umontpellier.fr",
-             password:              "foobar",
-             password_confirmation: "foobar",
-             admin: true)
-
 User.create!(name:  "Foo Bar",
              email: "foo.bar@umontpellier.fr",
              password:              "foobar",
@@ -26,11 +20,10 @@ Course.create!(name: "Compilation",
 Course.create!(name: "Compta",
                description: "416 client douteux")
 
-99.times do |n|
+20.times do |n|
   name  = Faker::Lorem.word
-  description = Faker::Lorem.paragraph
+  description = Faker::Lorem.sentences
   Course.create!(name: name,
                  description: description)
 end
-
 
