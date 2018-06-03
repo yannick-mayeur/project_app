@@ -1,5 +1,4 @@
 <% provide(:title, "Home") %>
-<% @user ||= current_user %>
 <% if !logged_in? %>
 
   <div class="jumbotron">
@@ -33,7 +32,6 @@
 
   <% else %>
     
-    <% @courses = @user.courses %>
     <%= render 'courses/course_list' %>
 
   <% end %>
