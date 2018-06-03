@@ -23,7 +23,7 @@
     <% @comments.each do |comment| %>
       <div class="list-group list-group-flush">
         <div class="list-group-item">
-          <h6>By <%= comment.user.name %></h6>
+          <h6>By <%= comment.user.name %> <% if comment.user.admin? %><span class="badge badge-info">class representative</span><% end %></h6>
           <div><%= comment.content %></div>
           <small>Posted <%= time_ago_in_words comment.created_at %> ago</small>
         </div>
