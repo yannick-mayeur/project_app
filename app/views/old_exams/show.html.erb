@@ -20,7 +20,7 @@
   </div>
 
   <div class="col-md-8">
-    <% @old_exam.comments.each do |comment| %>
+    <% @comments.each do |comment| %>
       <div class="list-group list-group-flush">
         <div class="list-group-item">
           <h6>By <%= comment.user.name %></h6>
@@ -29,6 +29,7 @@
         </div>
       </div>
     <% end %>
+    <%= will_paginate @comments, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
   </div>
 
 </div>

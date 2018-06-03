@@ -1,6 +1,7 @@
 class OldExamsController < ApplicationController
   def show
     @old_exam = OldExam.find(params[:id])
+    @comments = @old_exam.comments.paginate(page: params[:page], per_page: 10)
   end
 
   def new
