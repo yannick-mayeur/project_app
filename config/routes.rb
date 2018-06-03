@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'comments/create'
-  get 'old_exams/new'
   get '/about',  to: 'static_pages#about'
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
