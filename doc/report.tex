@@ -45,7 +45,7 @@ old exams.
 \section{Instructions}
 
 All the instructions to get the project up and running on your machine are
-available on the project README on the GitHub Repository: 
+available on the projects README on the GitHub Repository: 
 \url{https://github.com/yannick-mayeur/project_app}
 
 \section{Technologies}
@@ -73,7 +73,7 @@ another part of the application.
 \subsubsection{Bootstrap}
 
 Bootstrap is a front-end library that helps you build good looking applications
-easily. Bootstrap has a lot of premade components you can use in your
+easily. Bootstrap has a lot of pre made components you can use in your
 applications. Not having a very good eye for design, Bootstrap was the perfect
 solution for me.
 
@@ -84,13 +84,17 @@ solution for me.
 \end{figure}
 
 
-\subsubsection{Heroku}
+\subsubsection{Heroku and Google Cloud Storage}
 To deploy my web application I used Heroku. Heroku is a cloud PaaS (Platform as
 a Service) which supports Ruby on Rails. Heroku makes it very easy to deploy a
 web application due to its numerous build packs. It has a free version which is
 easily enough for a small application like MenexaTech in its current state, and
 with its current user base. But Heroku also makes it very easy to scale an
 application.
+
+I used Google Cloud Storage to host the files of Rails's Active Storage
+service. I couldn't just use the local disk of Heroku because it is an
+"ephemeral" hard drive, meaning that the data written to it is not persistent.
 
 \begin{figure}[h]
    \centering
@@ -128,13 +132,13 @@ Heroku.
 \subsection{Learning the technologies}
 
 One of the biggest challenges of this project was to learn a lot of new
-technologies, use them as well as possible in short frame of time. I made it
+technologies, and use them as well as possible in short frame of time. I made it
 possible by choosing technologies that I thought on one hand would be
 interesting for me to know. And on the other hand would offer a community with
 a lot of support because they a mature and still very active technologies and
 so they come with a great amount of good resources to learn from on the
 internet. Git and GitHub are the technologies I was the most familiar with
-before diving into this project.  Some of theresources I used to learn are:
+before diving into this project.  Some of the resources I used to learn are:
 
 \begin{itemize}  
 \item Official Rails Guides
@@ -161,7 +165,7 @@ fairly simple.
 In the Rails MVC, when the user makes a request for a page through his web
 browser, the URL he ask for is routed to a particular method in a controller.
 The job of the controller is to gather all the data from the model that
-will have to be used in view. The view is then created with this data and is
+will have to be used in the view. The view is then created with this data and is
 sent back to the browser where the user can see the result. These interactions
 can clearly be seen in figure~\ref{fig:mvc} on page~\pageref{fig:mvc}.
 
@@ -185,7 +189,7 @@ drawbacks. It sometimes unnecessarily complicates, things that should be simple.
 We can see in figure~\ref{fig:uml} the different tables of the database and the
 relations they have between them.
 
-The database was created though Rails' Active Record Migrations. This feature of
+The database was created though Rails's Active Record Migrations. This feature of
 Rails is a convenient way of creating the database, and making it evolve
 over time.
 
@@ -220,20 +224,63 @@ comment.
 The principle disadvantage of this model is that all courses are mixed
 together. That would be okay if only one class would use the application, but
 for more classes the list of courses will probably start to get very cluttered.
-A good future improvement would be to add a Class Table.
+A good future improvement would be to add a Class Table to better organize
+courses.
 
 One clear advantage would be the use of a table for the follow relationship.
 Indeed in Rails there are two ways of doing a many to many relationship. Either
 it you use the \lstinline{has_and_belongs_to_many} statement, that uses a table
 which is impossible to use to store additional informations. Or can use the
 \lstinline{has_many_though} statement which allows you to get your relationship
-though a middle table. I went for the latter solution, which is way more
-scalable.
+though a middle table. I went for the latter solution, which offers way more
+scalability.
 
 
 \section{Post Mortem}
 
-% TODO
+
+\subsection{What went right}
+
+This project was a very good experience. It was a good introduction to web
+development and the technologies related to it. It was very exciting to do a
+project that had almost no restrictions on the theme and on the technologies to
+use.
+
+The project allowed me to see that at the end of IG3 we have some real skills
+and that we can build applications that could be used in the real world.
+
+Most of what I initially wanted to put in the application is in it at the end
+of the project. I think I managed to organise myself properly and correctly
+estimated what would be doable at the beginning of the project. But I got a lot
+of new ideas that I have no time to implement. That means that I will probably
+continue working on it in my spare time.
+
+\subsection{What went wrong}
+
+Even if in the end all worked out pretty well for my project, some things took me
+a lot more time that expected. Logins for example. Programming the application
+in a stateless way, sessions were out of question. However most of the
+resources I found on the internet advises to use sessions for logins. I had to
+patch a lot of different sources together to manage to get what I think is a
+secure cookie based authentication.
+
+Another problem I had was with Rails's Active Storage service. I noticed very
+late in the development process that Heroku's disk was "ephemeral", meaning
+that I had to find a free solution to host the files. Luckily I managed to make
+Google Cloud Storage work after countless tries and comprehension problems.
+
+\subsection{Lessons learned}
+
+This project allowed me to learn how to learn new technologies in a more effective
+way, the project having to be made in a relatively short amount of time.
+
+I learned that well structuring your code base and using good tools like a VCS
+are even more essential than I thought if you don't want to spend a lot of time
+finding where a bug comes from or refactoring a chunk of your code.
+
+Well knowing how something was designed helps to build application that will be
+scalable. The biggest example I have of that is the REST architectural style
+that respect the HTML protocol.
 
 
 \end{document}
