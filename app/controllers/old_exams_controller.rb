@@ -1,3 +1,5 @@
+require "google/cloud/storage"
+
 class OldExamsController < ApplicationController
   def show
     @old_exam = OldExam.find(params[:id])
@@ -10,6 +12,8 @@ class OldExamsController < ApplicationController
 
   def create
     @old_exam = OldExam.new(user_params)
+    @old_exam.file.attach(params[:old_exam][:file])
+
     if @old_exam.save
       flash[:success] = "Exam created!"
       redirect_to course_path(@old_exam.course_id)
@@ -45,6 +49,6 @@ class OldExamsController < ApplicationController
   private
 
   def user_params
-    params.require(:old_exam).permit(:title, :file, :course_id)
+    params.require(:old_exam).permit(:title, :course_id)
   end
 end

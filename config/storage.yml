@@ -6,11 +6,17 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
+google:
+  service: GCS
+  project: menexaTech
+  credentials: <%= Rails.root.join("config/menexaTech-400e62e270a9.json") %>
+  bucket: heroku-menexatech
+
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
 #   service: S3
-#   access_key_id: <%= Rails.application.credentials.dig(:aws, :access_key_id) %>
-#   secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
+#   access_key_id: <%= Rails.application.credentials.gcs(:access_key_id) %>
+#   secret_access_key: <%= Rails.application.credentials.gcs(:secret_access_key) %>
 #   region: us-east-1
 #   bucket: your_own_bucket
 
