@@ -3,8 +3,12 @@
 \usepackage{times}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{xcolor}
 \usepackage{listings}
+\usepackage{hyperref}
 \usepackage[english]{babel}
+
+\lstset{language=Ruby,keywordstyle={\bfseries \color{blue}}}
 
 \begin{document}
 \include{titlePage}
@@ -40,8 +44,9 @@ old exams.
 
 \section{Instructions}
 
-% TODO
-
+All the instructions to get the project up and running on your machine are
+available on the project README on the GitHub Repository: 
+\url{https://github.com/yannick-mayeur/project_app}
 
 \section{Technologies}
 
@@ -64,9 +69,19 @@ another part of the application.
    \caption{\label{fig:rlogo} Ruby on Rails logo}
 \end{figure}
 
+
 \subsubsection{Bootstrap}
 
-% TODO
+Bootstrap is a front-end library that helps you build good looking applications
+easily. Bootstrap has a lot of premade components you can use in your
+applications. Not having a very good eye for design, Bootstrap was the perfect
+solution for me.
+
+\begin{figure}[h]
+   \centering
+   \includegraphics[scale=0.5]{src/bootstrap_logo.png}
+   \caption{\label{fig:blogo} Bootstrap logo}
+\end{figure}
 
 
 \subsubsection{Heroku}
@@ -112,15 +127,31 @@ Heroku.
 
 \subsection{Learning the technologies}
 
-% TODO
+One of the biggest challenges of this project was to learn a lot of new
+technologies, use them as well as possible in short frame of time. I made it
+possible by choosing technologies that I thought on one hand would be
+interesting for me to know. And on the other hand would offer a community with
+a lot of support because they a mature and still very active technologies and
+so they come with a great amount of good resources to learn from on the
+internet. Git and GitHub are the technologies I was the most familiar with
+before diving into this project.  Some of theresources I used to learn are:
+
+\begin{itemize}  
+\item Official Rails Guides
+\item Ruby On Rails Tutorial (Rails 5): Learn Web development with Rails,
+	by Michael Hartl
+\item RailsCasts
+\item Bootstrap documentation
+\item Heroku documentation
+\end{itemize}
 
 
 \section{Architecture of the application}
 
 \begin{figure}[h]
-   \centering
-   \includegraphics[scale=0.5]{src/mvc.png}
-   \caption{\label{fig:mvc} MVC Architechture}
+	\centering
+	\includegraphics[scale=0.5]{src/mvc.png}
+	\caption{\label{fig:mvc} MVC Architechture}
 \end{figure}
 
 Model-View-Controller is a very popular design pattern, for designing web
@@ -134,17 +165,21 @@ will have to be used in view. The view is then created with this data and is
 sent back to the browser where the user can see the result. These interactions
 can clearly be seen in figure~\ref{fig:mvc} on page~\pageref{fig:mvc}.
 
+
+\subsection{Pros and Cons}
+
 MVC is good way of creating a web application. It has a very clear design,
 which allows for a clean separation of the different parts of the application,
 and thus make the application very scalable. However MVC also has some
 drawbacks. It sometimes unnecessarily complicates, things that should be simple.
 
+
 \section{Architecture of the Database}
 
 \begin{figure}[h]
-   \centering
-   \includegraphics[scale=0.7]{src/digram.png}
-   \caption{\label{fig:uml} Class Diagram of the Database}
+	\centering
+	\includegraphics[scale=0.7]{src/digram.png}
+	\caption{\label{fig:uml} Class Diagram of the Database}
 \end{figure}
 
 We can see in figure~\ref{fig:uml} the different tables of the database and the
@@ -153,6 +188,9 @@ relations they have between them.
 The database was created though Rails' Active Record Migrations. This feature of
 Rails is a convenient way of creating the database, and making it evolve
 over time.
+
+
+\subsection{Description of the database}
 
 The User Table contains all the users of the application. A User is identified
 with an id, he also has a name, an email, which he uses to login, a
@@ -176,10 +214,21 @@ The Comment table is where the comments are stored. A comment has content, it
 references the old exam that the comment concerns, and the user that posted the
 comment.
 
+\subsection{Pros and Cons}
+
+
 The principle disadvantage of this model is that all courses are mixed
 together. That would be okay if only one class would use the application, but
 for more classes the list of courses will probably start to get very cluttered.
 A good future improvement would be to add a Class Table.
+
+One clear advantage would be the use of a table for the follow relationship.
+Indeed in Rails there are two ways of doing a many to many relationship. Either
+it you use the \lstinline{has_and_belongs_to_many} statement, that uses a table
+which is impossible to use to store additional informations. Or can use the
+\lstinline{has_many_though} statement which allows you to get your relationship
+though a middle table. I went for the latter solution, which is way more
+scalable.
 
 
 \section{Post Mortem}
