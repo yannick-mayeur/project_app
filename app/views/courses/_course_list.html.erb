@@ -36,4 +36,4 @@
   <% end %>
 </div>
 
-<%= will_paginate @courses, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+<%= will_paginate @courses, page_links: false, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
