@@ -25,6 +25,13 @@ $ rails db:migrate
 $ rails db:seed
 ```
 
+In order to be sure that the application works properly you will have to add
+the triggers from file `db/triggers.sql` to your database. The database of the
+development environement currently being sqlite3 this is not trivial, the
+installation of postgres on a local machine being relatively hard. My advice
+would be to deploy the application to for example Heroku and then add the
+triggers.
+
 Finally you can run the application on a local server:
 
 ```
