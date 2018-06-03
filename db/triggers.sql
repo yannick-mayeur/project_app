@@ -1,4 +1,5 @@
 -- TRIGGER 1
+-- Deletes Followments when associated Course is deleted
 CREATE OR REPLACE FUNCTION delete_followments() RETURNS trigger AS $delete_followments$
 DECLARE
 	nb numeric;
@@ -20,6 +21,7 @@ CREATE TRIGGER delete_followments AFTER DELETE ON Courses
 
 
 -- TRIGGER 2
+-- Deletes OldExams and Comments when associated Course is deleted
 CREATE OR REPLACE FUNCTION delete_old_exams() RETURNS trigger AS $delete_old_exams$
 DECLARE
 	nb numeric;
@@ -51,6 +53,7 @@ CREATE TRIGGER delete_old_exams BEFORE DELETE ON Courses
 
 
 -- TRIGGER 3
+-- Deletes Comments when associated OldExam is deleted
 CREATE OR REPLACE FUNCTION delete_comments() RETURNS trigger AS $delete_comments$
 DECLARE
 	nb numeric;
