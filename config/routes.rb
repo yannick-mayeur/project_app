@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :followments, only: [:create, :destroy]
   resources :comments, only: [:create]
   resources :old_exams
+  resources :groups
 end
