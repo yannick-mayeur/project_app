@@ -11,19 +11,25 @@ User.create!(name:  "Foo Bar",
              password:              "foobar",
              password_confirmation: "foobar")
 
+Group.create!(name: "IG3")
+
 Course.create!(name: "Algo",
-               description: "Cest coeff 8 alors bosse !")
+               description: "Cest coeff 8 alors bosse !",
+               group_id: Group.first.id)
 
 Course.create!(name: "Compilation",
-               description: "Le mips c'est pas si dur.")
+               description: "Le mips c'est pas si dur.",
+               group_id: Group.first.id)
 
 Course.create!(name: "Compta",
-               description: "416 client douteux")
+               description: "416 client douteux",
+               group_id: Group.first.id)
 
 20.times do |n|
   name  = Faker::Lorem.word
   description = Faker::Lorem.sentences
   Course.create!(name: name,
-                 description: description)
+                 description: description,
+                 group_id: Group.first.id)
 end
 

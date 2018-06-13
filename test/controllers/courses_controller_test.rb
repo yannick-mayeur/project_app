@@ -32,7 +32,7 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
   test "should create course" do
     log_in_as(@user)
     assert_difference('Course.count') do
-      post courses_path, params: { course: { name: "foobar", description: "foobar" } }
+      post courses_path, params: { course: { name: "foobar", description: "foobar", group_id: Group.first.id } }
     end
     assert_redirected_to courses_path
   end
@@ -48,15 +48,6 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
     course = Course.first
     get edit_course_path(course)
     assert_redirected_to login_path
-  end
-
-  test "should update course" do
-    log_in_as(@user)
-    course = Course.first
-    patch course_path(course), params: { course: { name: "updated" } }
-    assert_redirected_to courses_path
-    course.reload
-    assert_equal "updated", course.name
   end
 
   test "should destroy course" do

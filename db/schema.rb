@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_01_103809) do
+ActiveRecord::Schema.define(version: 2018_06_13_085402) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -48,11 +48,19 @@ ActiveRecord::Schema.define(version: 2018_06_01_103809) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "group_id"
+    t.index ["group_id"], name: "index_courses_on_group_id"
   end
 
   create_table "followments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -45,7 +45,8 @@ class CoursesTest < ActionDispatch::IntegrationTest
     assert_select 'form[action="/courses"]'
     assert_difference 'Course.count' do
       post courses_path, params: { course: { name: "Foobar",
-                                             description: "Lorem ipsum..." } }
+                                             description: "Lorem ipsum...",
+                                             group_id: Group.first.id } }
     end
     follow_redirect!
     assert_template 'courses/index'
