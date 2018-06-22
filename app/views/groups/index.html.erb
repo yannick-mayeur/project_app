@@ -1,3 +1,19 @@
 <% @groups.each do |group| %>
-  <div><%= group.name %></div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-sm"><%= group.name %></div>
+        <div class="btn-group col-sm">
+          <%= link_to "Update", edit_group_path(group.id), class: "btn btn-secondary" %>
+          <%= link_to "Delete", group_path(group.id), method: :delete, data: { confirm: "You sure?" }, class: "btn btn-secondary" %>
+        </div>
+      </div>
+    </li>
+  </ul>
+<% end %>
+
+<% if logged_in? %>
+  <% if current_user.admin? %>
+    <%= link_to "Create new group", new_group_path, class: "btn btn-primary btn-md", role: "button" %>
+  <% end %>
 <% end %>

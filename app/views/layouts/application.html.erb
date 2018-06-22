@@ -24,6 +24,13 @@
           <li class="nav-item">
             <%= link_to "Courses", courses_path, class: "nav-link" %>
           </li>
+          <% if logged_in? %>
+            <% if current_user.admin? %>
+              <li class="nav-item">
+                <%= link_to "Manage Groups", groups_path, class: "nav-link" %>
+              </li>
+            <% end %>
+          <% end %>
           <li class="nav-item">
             <%= link_to "About", about_path, class: "nav-link" %>
           </li>
