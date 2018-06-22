@@ -15,4 +15,13 @@ class Course < ApplicationRecord
       all
     end
   end
+
+  def Course.filter(filter)
+    if filter
+      where('group_id = ?', filter[:group_id])
+    else
+      all
+    end
+  end
+    
 end
