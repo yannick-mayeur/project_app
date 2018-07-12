@@ -24,12 +24,13 @@ $ docker-compose run web rails db:migrate
 ```
 
 
-## Getting started: depreciated
+## Getting started by installing requirements yourself
 
 ### Requirements
 
  * Same Rails and Ruby version as specified in the Gemfile
- * Poppler to preview images
+ * postgres
+ * Poppler-utils to preview images
 
 ### Getting started
 
