@@ -1,7 +1,7 @@
 class OldExam < ApplicationRecord
   has_one_attached :file
   belongs_to :course
-  has_many :comments
+  has_many :comments, dependent: :destroy
   validates :title, presence: true, length: { maximum: 50 }
   validate :file?
 
