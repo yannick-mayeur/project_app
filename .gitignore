@@ -31,3 +31,5 @@
 
 # Ignore *.swp files
 *.swp
+
+/tmp/*
