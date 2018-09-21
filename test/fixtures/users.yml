@@ -4,14 +4,20 @@ foobar:
   name: John Doe
   email: john.doe@umontpellier.fr
   password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 jane:
   name: Jane Doe
   email: jane.doe@etu.umontpellier.fr
   password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 yannick:
   name: Yannick
   email: yannick.mayeur@etu.umontpellier.fr
   password_digest: <%= User.digest('password') %>
   admin: true
+  activated: true
+  activated_at: <%= Time.zone.now %>

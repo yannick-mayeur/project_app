@@ -9,7 +9,9 @@
 User.create!(name:  "Foo Bar",
              email: "foo.bar@umontpellier.fr",
              password:              "foobar",
-             password_confirmation: "foobar")
+             password_confirmation: "foobar",
+             activated: true,
+             activated_at: Time.zone.now)
 
 Course.create!(name: "Algo",
                description: "Cest coeff 8 alors bosse !")
