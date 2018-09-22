@@ -28,7 +28,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_template root_path
     assert_not flash.empty?
-    assert_select "div.alert-success"
+    assert_select "div.alert-info"
   end
 
 end
