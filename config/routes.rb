@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update]
   resources :courses
   resources :followments, only: [:create, :destroy]
-  resources :comments, only: [:create]
+  resources :comments, only: [:create, :destroy]
   resources :old_exams
   resources :account_activations, only: [:edit]
 end

@@ -23,7 +23,15 @@
     <% @comments.each do |comment| %>
       <div class="list-group list-group-flush">
         <div class="list-group-item">
-          <h6>By <%= comment.user.name %> <% if comment.user.admin? %><span class="badge badge-info">class representative</span><% end %></h6>
+          <h6>By <%= comment.user.name %> <% if comment.user.admin? %><span class="badge badge-info">class representative</span><% end %>
+          <div class="btn-group">
+            <% if logged_in? && ((current_user == comment.user) || current_user.admin?) %>
+              <button type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+              <div class="dropdown-menu">
+                <%= link_to "Delete", comment_path(comment.id), method: :delete, class: "dropdown-item" %>
+              </div>
+            <% end %>
+          </div></h6>
           <div><%= comment.content %></div>
           <small>Posted <%= time_ago_in_words comment.created_at %> ago</small>
         </div>
