@@ -6,7 +6,11 @@
     <h5 class="card-title"><%= @old_exam.title %> <% if @old_exam.created_at >= 1.day.ago %><span class="badge badge-secondary">New</span><% end %></h5>
     <div class="btn-group-vertical" role="group" aria-label="Old Exam Buttons">
       <%= link_to "Download", rails_blob_path(@old_exam.file, disposition: "attachment"), class: "btn btn-primary btn-md", role: "button" %>
-      <%= link_to "Show", old_exam_path(@old_exam.id), class: "btn btn-primary btn-md", role: "button" %>
+      <%=
+        link_to_unless_current "Show", old_exam_path(@old_exam.id), class: "btn btn-primary btn-md", role: "button" do
+          link_to "To course", course_path(@old_exam.course.id), class: "btn btn-primary btn-md", role: "button"
+        end
+      %> 
       <% if logged_in? and current_user.admin? %>
         <%= link_to "Update", edit_old_exam_path(@old_exam.id), class: "btn btn-secondary btn-md", role: "button" %>
         <%= link_to "Delete", old_exam_path(@old_exam.id), method: :delete, class: "btn btn-secondary btn-md", role: "button" %>
