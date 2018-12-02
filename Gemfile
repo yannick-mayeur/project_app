@@ -5,6 +5,8 @@ ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
+# Use devise for auth
+gem 'devise'
 gem 'pg', '~> 0.18.4'
 # Boostrap framework
 gem 'bootstrap', '~> 4.1.1'
