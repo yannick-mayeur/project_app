@@ -52,6 +52,17 @@
 
     <div class="container">
       <% flash.each do |message_type, message| %>
+        <%# TODO: come up with a better way to do this %>
+        <% if message_type == "notice" %>
+          <% message_type = "primary" %>
+        <% elsif message_type == "alert" %>
+          <% message_type = "warning" %>
+        <% elsif message_type == "success" %>
+          <% message_type = "success" %>
+        <% elsif message_type == "alert" %>
+          <% message_type = "danger" %>
+        <% end %>
+
         <div class="<%= "alert alert-#{message_type}" %>"><%= message %></div>
       <% end %>
 
