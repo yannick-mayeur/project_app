@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :duser_signed_in?
+  before_action :authenticate_duser!
 
   def create
     @comment = current_duser.comments.build(user_params)

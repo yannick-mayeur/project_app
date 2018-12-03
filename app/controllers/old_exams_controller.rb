@@ -1,6 +1,8 @@
 require "google/cloud/storage"
 
 class OldExamsController < ApplicationController
+  before_action :authenticate_duser!, only: [:new, :edit, :update, :destroy]
+
   def show
     @old_exam = OldExam.find(params[:id])
     @comments = @old_exam.comments.paginate(page: params[:page], per_page: 10)

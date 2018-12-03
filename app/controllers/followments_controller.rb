@@ -1,5 +1,5 @@
 class FollowmentsController < ApplicationController
-  before_action :duser_signed_in?
+  before_action :authenticate_duser!
 
   def create
     @course = Course.find(params[:course_id])
