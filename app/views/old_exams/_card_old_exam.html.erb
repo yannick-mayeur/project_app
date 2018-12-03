@@ -11,7 +11,7 @@
           link_to "To course", course_path(@old_exam.course.id), class: "btn btn-primary btn-md", role: "button"
         end
       %> 
-      <% if duser_signed_in? %>
+      <% if current_duser.try(:admin?) %>
         <%= link_to "Update", edit_old_exam_path(@old_exam.id), class: "btn btn-secondary btn-md", role: "button" %>
         <%= link_to "Delete", old_exam_path(@old_exam.id), method: :delete, class: "btn btn-secondary btn-md", role: "button" %>
       <% end %>

@@ -24,9 +24,9 @@
       <div class="list-group list-group-flush">
         <div class="list-group-item">
           <h6>By <%= comment.duser.email %>
-          <%# <% if comment.duser.admin? %1><span class="badge badge-info">class representative</span><% end %1> %>
+          <% if comment.duser.admin? %><span class="badge badge-info">class representative</span><% end %>
           <div class="btn-group">
-            <% if duser_signed_in? && ((current_duser == comment.duser)) %>
+            <% if current_duser.try(:admin?) %>
               <button type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
               <div class="dropdown-menu">
                 <%= link_to "Delete", comment_path(comment.id), method: :delete, class: "dropdown-item" %>

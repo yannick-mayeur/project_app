@@ -8,6 +8,6 @@
 
 <%= render 'course_list' %>
 
-<% if duser_signed_in? %>
+<% if current_duser.try(:admin?) %>
   <%= link_to "Create new course", new_course_path, class: "btn btn-primary btn-md", role: "button" %>
 <% end %>

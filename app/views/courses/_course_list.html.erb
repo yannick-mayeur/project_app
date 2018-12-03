@@ -22,7 +22,7 @@
 
             <div class="btn-group mr-2" role="group" aria-label="Second group">
               <%= link_to "Show", course_path(@course.id), class: "btn btn-primary" %>
-              <% if duser_signed_in? and current_page?(controller: 'courses') %>
+              <% if current_duser.try(:admin?) and current_page?(controller: 'courses') %>
                 <%= link_to "Update", edit_course_path(course.id), class: "btn btn-secondary" %>
                 <%= link_to "Delete", course_path(course.id), method: :delete, data: { confirm: "You sure?" }, class: "btn btn-secondary" %>
               <% end %>
