@@ -1,13 +1,15 @@
 require 'test_helper'
 
 class CoursesTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   def setup
-    @user = users(:yannick)
-    @other_user = users(:foobar)
+    @user = dusers(:three)
+    @other_user = dusers(:one)
   end
 
   test "index page when logged in as admin" do
-    log_in_as(@user)
+    sign_in(@user)
     get courses_path
     assert_select 'div.card-body' do
       assert_select 'form', count: Course.count
@@ -17,7 +19,7 @@ class CoursesTest < ActionDispatch::IntegrationTest
   end
 
   test "index page when logged in" do
-    log_in_as(@other_user)
+    sign_in(@other_user)
     get courses_path
     assert_select 'div.card-body' do
       assert_select 'form', count: Course.count
@@ -27,7 +29,7 @@ class CoursesTest < ActionDispatch::IntegrationTest
   end
 
   test "invalid new courses" do
-    log_in_as(@user)
+    sign_in(@user)
     get new_course_path
     assert_select 'form[action="/courses"]'
     assert_no_difference 'Course.count' do
@@ -40,7 +42,7 @@ class CoursesTest < ActionDispatch::IntegrationTest
   end
 
   test "valid new courses" do
-    log_in_as(@user)
+    sign_in(@user)
     get new_course_path
     assert_select 'form[action="/courses"]'
     assert_difference 'Course.count' do

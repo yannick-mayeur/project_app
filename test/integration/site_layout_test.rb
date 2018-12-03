@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class SiteLayoutTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
 
   test "layout links" do
     get root_path
@@ -8,20 +9,20 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", root_path, count: 2
     assert_select "a[href=?]", about_path
     assert_select "a[href=?]", courses_path
-    assert_select "a[href=?]", login_path
+    assert_select "a[href=?]", new_duser_session_path
   end
 
   test "layout links logged in" do
-    @user = users(:foobar)
-    log_in_as(@user)
+    @user = dusers(:one)
+    sign_in(@user)
     get root_path
-    assert_select "a[href=?]", logout_path
-    assert_select "a[href=?]", edit_user_path(@user)
+    assert_select "a[href=?]", destroy_duser_session_path
+    assert_select "a[href=?]", edit_duser_registration_path
   end
 
   test "home links" do
     get root_path
-    assert_select "a[href=?]", signup_path
+    assert_select "a[href=?]", new_duser_registration_path
   end
 
 end

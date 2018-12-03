@@ -1,12 +1,14 @@
 require 'test_helper'
 
 class FollowmentsTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   def setup
-    @user = users(:foobar)
+    @user = dusers(:one)
   end
 
   test "successful new follow" do
-    log_in_as(@user)
+    sign_in(@user)
     get courses_path
     assert_difference 'Followment.count' do
       post followments_path, params: { course_id: Course.first.id }
@@ -21,7 +23,7 @@ class FollowmentsTest < ActionDispatch::IntegrationTest
   end
 
   test "unsuccessful new follow because already follwing" do
-    log_in_as(@user)
+    sign_in(@user)
     post followments_path, params: { course_id: Course.first.id }
     get courses_path
     assert_no_difference 'Followment.count' do

@@ -1,8 +1,10 @@
 require 'test_helper'
 
 class CoursesControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   def setup
-    @user = users(:yannick)
+    @user = dusers(:three)
   end
 
   test "should get index" do
@@ -17,20 +19,20 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
-    log_in_as(@user)
+    sign_in(@user)
     get new_course_url
     assert_response :success
   end
 
   test "redirect when new and not logged in" do
     get new_course_url
-    assert_redirected_to login_path
+    assert_redirected_to new_duser_session_path
     follow_redirect!
     assert_not flash.empty?
   end
 
   test "should create course" do
-    log_in_as(@user)
+    sign_in(@user)
     assert_difference('Course.count') do
       post courses_path, params: { course: { name: "foobar", description: "foobar" } }
     end
@@ -38,7 +40,7 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get edit" do
-    log_in_as(@user)
+    sign_in(@user)
     course = Course.first
     get edit_course_path(course)
     assert_response :success
@@ -47,11 +49,11 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
   test "should not get edit because not logged in" do
     course = Course.first
     get edit_course_path(course)
-    assert_redirected_to login_path
+    assert_redirected_to new_duser_session_path
   end
 
   test "should update course" do
-    log_in_as(@user)
+    sign_in(@user)
     course = Course.first
     patch course_path(course), params: { course: { name: "updated" } }
     assert_redirected_to courses_path
@@ -60,7 +62,7 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy course" do
-    log_in_as(@user)
+    sign_in(@user)
     course = Course.first
     assert_difference('Course.count', -1) do
       delete course_path(course)

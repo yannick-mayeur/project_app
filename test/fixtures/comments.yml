@@ -2,10 +2,10 @@
 
 one:
   content: MyText
-  user: one
+  duser: one
   old_exam: one
 
 two:
   content: MyText
-  user: two
+  duser: two
   old_exam: two
