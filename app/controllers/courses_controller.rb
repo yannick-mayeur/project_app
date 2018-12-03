@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   before_action :authenticate_duser!, only: [:new, :edit, :update, :destroy]
+  before_action :admin_duser!, only: [:new, :edit, :update, :destroy]
 
   def index
     @courses = Course.search(params[:search]).paginate(page: params[:page], per_page: 10)

@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_duser!
+  before_action :admin_duser!, only: :destroy
 
   def create
     @comment = current_duser.comments.build(user_params)
