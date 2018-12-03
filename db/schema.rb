@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_02_175013) do
+ActiveRecord::Schema.define(version: 2018_12_03_140201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,12 +38,12 @@ ActiveRecord::Schema.define(version: 2018_12_02_175013) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
-    t.bigint "user_id"
     t.bigint "old_exam_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "duser_id"
+    t.index ["duser_id"], name: "index_comments_on_duser_id"
     t.index ["old_exam_id"], name: "index_comments_on_old_exam_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -80,21 +80,6 @@ ActiveRecord::Schema.define(version: 2018_12_02_175013) do
     t.index ["course_id"], name: "index_old_exams_on_course_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "password_digest"
-    t.string "remember_digest"
-    t.boolean "admin", default: false
-    t.string "activation_digest"
-    t.boolean "activated", default: false
-    t.datetime "activated_at"
-    t.index ["email"], name: "index_users_on_email", unique: true
-  end
-
   add_foreign_key "comments", "old_exams"
-  add_foreign_key "comments", "users"
   add_foreign_key "old_exams", "courses"
 end
