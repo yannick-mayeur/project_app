@@ -6,4 +6,5 @@ class Duser < ApplicationRecord
 
   has_many :followments
   has_many :courses, through: :followments
+  has_many :comments
 end

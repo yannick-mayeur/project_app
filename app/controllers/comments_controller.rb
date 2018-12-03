@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
-  before_action :logged_in_user
+  before_action :duser_signed_in?
 
   def create
-    @comment = current_user.comments.build(user_params)
+    @comment = current_duser.comments.build(user_params)
     if @comment.save
       flash[:success] = "Comment created!"
       redirect_to old_exam_path(@comment.old_exam_id)

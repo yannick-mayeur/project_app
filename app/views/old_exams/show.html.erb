@@ -5,8 +5,8 @@
 
   <div class="col-md-4">
 
-    <% if logged_in? %>
-      <%= form_for(current_user.comments.build) do |f| %>
+    <% if duser_signed_in? %>
+      <%= form_for(current_duser.comments.build) do |f| %>
         <div><%= f.hidden_field :old_exam_id, value: @old_exam.id %></div>
         <div class="form-group">
           <%= f.text_area :content, class: "form-control", placeholder: "Enter comment" %>
@@ -23,9 +23,10 @@
     <% @comments.each do |comment| %>
       <div class="list-group list-group-flush">
         <div class="list-group-item">
-          <h6>By <%= comment.user.name %> <% if comment.user.admin? %><span class="badge badge-info">class representative</span><% end %>
+          <h6>By <%= comment.duser.email %>
+          <%# <% if comment.duser.admin? %1><span class="badge badge-info">class representative</span><% end %1> %>
           <div class="btn-group">
-            <% if logged_in? && ((current_user == comment.user) || current_user.admin?) %>
+            <% if duser_signed_in? && ((current_duser == comment.duser)) %>
               <button type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
               <div class="dropdown-menu">
                 <%= link_to "Delete", comment_path(comment.id), method: :delete, class: "dropdown-item" %>
