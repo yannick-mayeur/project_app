@@ -1,6 +1,6 @@
 class Course < ApplicationRecord
   has_many :followments, dependent: :destroy
-  has_many :users, through: :followments
+  has_many :dusers, through: :followments
   has_many :old_exams, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 50 }

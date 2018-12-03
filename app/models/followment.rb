@@ -1,4 +1,4 @@
 class Followment < ApplicationRecord
-  belongs_to :user
+  belongs_to :duser
   belongs_to :course
 end

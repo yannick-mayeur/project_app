@@ -17,12 +17,12 @@
           <div class="btn-toolbar" role="toolbar" aria-label="Toolbar courses">
 
             <div class="btn-group mr-2" role="group" aria-label="First group">
-              <%= render 'courses/follow_form' if logged_in? %>
+              <%= render 'courses/follow_form' if duser_signed_in? %>
             </div>
 
             <div class="btn-group mr-2" role="group" aria-label="Second group">
               <%= link_to "Show", course_path(@course.id), class: "btn btn-primary" %>
-              <% if logged_in? and current_user.admin? and current_page?(controller: 'courses') %>
+              <% if duser_signed_in? and current_page?(controller: 'courses') %>
                 <%= link_to "Update", edit_course_path(course.id), class: "btn btn-secondary" %>
                 <%= link_to "Delete", course_path(course.id), method: :delete, data: { confirm: "You sure?" }, class: "btn btn-secondary" %>
               <% end %>

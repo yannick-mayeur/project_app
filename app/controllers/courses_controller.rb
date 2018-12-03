@@ -1,6 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :logged_in_user, only: [:new, :edit, :update, :destroy]
-  before_action :admin_user, only: [:new, :edit, :update, :destroy]
+  before_action :duser_signed_in?, only: [:new, :edit, :update, :destroy]
 
   def index
     @courses = Course.search(params[:search]).paginate(page: params[:page], per_page: 10)

@@ -1,5 +1,5 @@
 <div id="<%= "follow_form_#{@course.id}" %>">
-  <% if current_user.courses.exists?(@course.id) %>
+  <% if current_duser.courses.exists?(@course.id) %>
     <%= render 'courses/unfollow' %>
   <% else %>
     <%= render 'courses/follow' %>

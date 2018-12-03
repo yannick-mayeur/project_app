@@ -1,12 +1,12 @@
 class FollowmentsController < ApplicationController
-  before_action :logged_in_user
+  before_action :duser_signed_in?
 
   def create
     @course = Course.find(params[:course_id])
-    if current_user.courses.exists?(@course.id)
+    if current_duser.courses.exists?(@course.id)
       redirect_to courses_path
     else
-      current_user.courses<<@course
+      current_duser.courses<<@course
       respond_to do |format|
         format.html { redirect_to root_path }
         format.js
@@ -16,7 +16,7 @@ class FollowmentsController < ApplicationController
 
   def destroy
     @course = Followment.find(params[:id]).course
-    current_user.courses.delete(@course)
+    current_duser.courses.delete(@course)
     respond_to do |format|
       format.html { redirect_to root_path }
       format.js
