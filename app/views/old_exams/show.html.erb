@@ -7,9 +7,16 @@
 
     <% if duser_signed_in? %>
       <%= form_for(current_duser.comments.build) do |f| %>
+        <% if current_duser.comments.build.errors.any? %>
+          bite
+        <% end %>
         <div><%= f.hidden_field :old_exam_id, value: @old_exam.id %></div>
         <div class="form-group">
           <%= f.text_area :content, class: "form-control", placeholder: "Enter comment" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :image %>
+          <%= f.file_field :image, multiple: false, class: "form-control-file" %>
         </div>
         <%= f.submit "Post", class: "btn btn-primary" %>
       <% end %>
@@ -34,6 +41,13 @@
             <% end %>
           </div></h6>
           <div><%= comment.content %></div>
+          <% if comment.image.attached? %>
+            <div>
+              <a href="<%= rails_blob_path(comment.image, disposition: "attachment") %>">
+                <img src="<%= url_for(comment.image) %>" alt="attached image" style="width: 150px;"/>
+              </a>
+            </div>
+          <% end %>
           <small>Posted <%= time_ago_in_words comment.created_at %> ago</small>
         </div>
       </div>

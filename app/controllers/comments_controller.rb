@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
       redirect_to old_exam_path(@comment.old_exam_id)
     else
       flash[:danger] = "ERROR!"
-      redirect_to root_path
+      redirect_to old_exam_path(@comment.old_exam_id)
     end
   end
 
@@ -25,6 +25,6 @@ class CommentsController < ApplicationController
   private
 
   def user_params
-    params.require(:comment).permit(:content, :old_exam_id)
+    params.require(:comment).permit(:content, :old_exam_id, :image)
   end
 end
